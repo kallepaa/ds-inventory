@@ -12,4 +12,5 @@ mqtt_topic_on_order_send = 'public-front/order-send'
 mqtt_topic_on_order_canceled = 'order/order-canceled'
 
 db = './db/ds-inventory.db'
+db_test = './db/ds-inventory-test.db'
 db_migrate = './db-migrate/*.sql'
