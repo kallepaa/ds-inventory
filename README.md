@@ -4,7 +4,11 @@ Distributed Systems, Fall 2023
 Install from requirements file
 pip install -r requirements.txt
 
-## Run
+## Visual Studio Code
+Flask
+https://code.visualstudio.com/docs/python/tutorial-flask
+
+### Run
 python -m flask run --host=0.0.0.0 --port=8081
 
 ## List inventory
@@ -56,7 +60,6 @@ pip install -r requirements.txt
 Configuration File
 https://janakiev.com/blog/python-credentials-and-configuration/
 
-Flask
-https://code.visualstudio.com/docs/python/tutorial-flask
+
 
 

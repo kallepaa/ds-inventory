@@ -1,9 +1,9 @@
-from inventory import Inventory
+from domain.inventory import Inventory
 from typing import List
 import sqlite3
 import config
 from sqlite3 import Error
-from order import Order
+from domain.order import Order
 
 def create_connection(db_file):
     conn = None

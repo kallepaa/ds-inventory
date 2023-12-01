@@ -1,2 +1,4 @@
 config.py
 db/ds-inventory.db
+db/ds-inventory-test.db
+**/__pycache__/

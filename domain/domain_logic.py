@@ -1,35 +1,35 @@
-from order import Order
-import repository
+from domain.order import Order
+import domain.repository as repo
 from typing import List
-from inventory import Inventory
+from domain.inventory import Inventory
 import paho.mqtt.publish as publish
 import paho.mqtt.client as mqtt
 import config 
-from messages import InStock, OutOfStock
+from domain.messages import InStock, OutOfStock
 
 def ListInventory()->List[Inventory]:
-    return repository.ListInventory()
+    return repo.ListInventory()
 
 def OrderSend(order: Order):
     
-    if repository.HasOrderExistingReservation(order.order_id):
+    if repo.HasOrderExistingReservation(order.order_id):
         return # Ignore possible dublicate silently
 
     for item in order.items:
         # try reservation
-        available = repository.CheckAvailability(item.inventory_id, item.count)
+        available = repo.CheckAvailability(item.inventory_id, item.count)
         if not available:
             # Notify inventory not Ok
             __message_publish(config.mqtt_topic_out_of_stock, OutOfStock(order.order_id).to_json())
             return False
 
     # Reserve order products
-    repository.ReserveProduct(order)
+    repo.ReserveProduct(order)
         # Notify inventory Ok 
     __message_publish(config.mqtt_topic_on_stock, InStock(order.order_id).to_json())
 
 def OrderCanceled(order_id : str):
-    repository.ReleaseReservation(order_id)
+    repo.ReleaseReservation(order_id)
     return
 
 def __message_publish(topic: str, payload: str):
