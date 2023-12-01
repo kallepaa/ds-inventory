@@ -2,6 +2,7 @@ from flask import Flask
 from flask_mqtt import Mqtt
 import domain.domain_logic as dl
 import config
+from domain.order import Order, OrderCancel
 
 app = Flask(__name__)
 app.config['MQTT_BROKER_URL'] = config.mqtt_host  # use the free broker from HIVEMQ
@@ -28,12 +29,10 @@ def handle_mqtt_message(client, userdata, message):
 
     if data['topic'] == config.mqtt_topic_on_order_send:
         print(data['payload'])
-        # call domain logic
-        pass
+        dl.OrderSend(Order.from_json(data['payload']))
     elif data['topic'] == config.mqtt_topic_on_order_canceled:
         print(data['payload'])
-        # call domain logic
-        pass
+        dl.OrderCancel(OrderCancel.from_json(data['payload']))
 
 @app.route("/")
 def Get():

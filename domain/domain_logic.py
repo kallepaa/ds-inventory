@@ -1,4 +1,4 @@
-from domain.order import Order
+from domain.order import Order, OrderCancel
 import domain.repository as repo
 from typing import List
 from domain.inventory import Inventory
@@ -28,11 +28,16 @@ def OrderSend(order: Order):
         # Notify inventory Ok 
     __message_publish(config.mqtt_topic_on_stock, InStock(order.order_id).to_json())
 
-def OrderCanceled(order_id : str):
-    repo.ReleaseReservation(order_id)
+def OrderCanceled(order : OrderCancel):
+    repo.ReleaseReservation(order.order_id)
     return
 
 def __message_publish(topic: str, payload: str):
+
+    print("Out going message")
+    print(F"Topic: {topic}")
+    print(F"Payload: {payload}")
+
     publish.single(
         topic, 
         payload=payload, 
