@@ -32,7 +32,7 @@ def handle_mqtt_message(client, userdata, message):
         dl.OrderSend(Order.from_json(data['payload']))
     elif data['topic'] == config.mqtt_topic_on_order_canceled:
         print(data['payload'])
-        dl.OrderCancel(OrderCancel.from_json(data['payload']))
+        dl.OrderCanceled(OrderCancel.from_json(data['payload']))
 
 @app.route("/")
 def Get():

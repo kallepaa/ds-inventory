@@ -11,6 +11,6 @@ mqtt_topic_out_of_stock = 'inventory/out-of-stock'
 mqtt_topic_on_order_send = 'public-front/order-send'
 mqtt_topic_on_order_canceled = 'order/order-canceled'
 
-db = './db/ds-inventory.db'
-db_test = './db/ds-inventory-test.db'
+db = './db/ds-inventory.sqlite'
+db_test = './db/ds-inventory-test.sqlite'
 db_migrate = './db-migrate/*.sql'
