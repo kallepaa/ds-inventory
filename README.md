@@ -19,12 +19,12 @@ python migrate.py
 
 ## Run Tests
 
-python test.py
+python3 test.py
 
 ### Run service
 
 ```console
-python -m flask run --host=0.0.0.0 --port=8081
+python3 -m flask run --host=0.0.0.0 --port=8081
 ```
 
 ## Public API
