@@ -34,6 +34,6 @@ def handle_mqtt_message(client, userdata, message):
         print(data['payload'])
         dl.OrderCanceled(OrderCancel.from_json(data['payload']))
 
-@app.route("/")
+@app.route("/inventory")
 def Get():
     return dl.ListInventory()
