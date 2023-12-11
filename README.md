@@ -31,7 +31,10 @@ python3 -m flask run --host=0.0.0.0 --port=8081
 
 ### List inventory
 
-http://127.0.0.1:8081/
+```console
+wget -qO - http://svm-11.cs.helsinki.fi:8081/
+```
+
 
 Response
 
