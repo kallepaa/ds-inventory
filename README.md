@@ -1,6 +1,16 @@
 # ds-inventory service
 Distributed Systems, Fall 2023
 
+## Structure
+
+* db contains SQLite database files
+* domain contains domain logic
+* migrate_scripts contains SQL files to create and upgrade database
+* app.py is service start entry point. It contains topic subscriptions
+* _config_sample is configuration file example. Should be copied and named as config.py
+* migrate.py runs database migration
+* test.py contains simple component test
+
 ## Visual Studio Code
 
 Setup Flask to Visual Studio Code
@@ -15,7 +25,7 @@ pip install -r requirements.txt
 
 ## Migrate databse
 
-python migrate.py
+python3 migrate.py
 
 ## Run Tests
 
@@ -32,7 +42,7 @@ python3 -m flask run --host=0.0.0.0 --port=8081
 ### List inventory
 
 ```console
-wget -qO - http://svm-11.cs.helsinki.fi:8081/
+wget -qO - http://svm-11-2.cs.helsinki.fi:8081/inventory
 ```
 
 
@@ -97,24 +107,3 @@ topic: order/order-canceled
 ```json
 {"orderId": "61161883-f796-4405-ac07-263190466f40"}
 ```
-
-## Notes
-
-Python tutorial
-https://www.hivemq.com/blog/mqtt-essentials-part-6-mqtt-quality-of-service-levels/
-https://pypi.org/project/paho-mqtt/
-https://cedalo.com/blog/configuring-paho-mqtt-python-client-with-examples/
-https://pypi.org/project/Flask-MQTT/
-https://flask-mqtt.readthedocs.io/en/latest/usage.html#configure-the-mqtt-client
-
-Python Requirements
-https://learnpython.com/blog/python-requirements-file/
-
-Create requirements file
-pip freeze > requirements.txt
-
-Install from requirements file
-pip install -r requirements.txt
-
-Configuration File
-https://janakiev.com/blog/python-credentials-and-configuration/
