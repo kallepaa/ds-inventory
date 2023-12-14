@@ -26,14 +26,18 @@ def handle_mqtt_message(client, userdata, message):
         topic=message.topic,
         payload=message.payload.decode()
     )
+    print("")
+    print("\033[93mIncoming message topic: " + message.topic + "\033[00m")
 
     if data['topic'] == config.mqtt_topic_on_order_send:
-        print(data['payload'])
+        print("\033[93mPayload: " + data['payload'] + "\033[00m")
         dl.OrderSend(Order.from_json(data['payload']))
     elif data['topic'] == config.mqtt_topic_on_order_canceled:
-        print(data['payload'])
+        print("\033[93mPayload: " + data['payload'] + "\033[00m")
         dl.OrderCanceled(OrderCancel.from_json(data['payload']))
 
 @app.route("/inventory")
 def Get():
+    print("")
+    print("\033[93mInventory - GET /inventory\033[00m")
     return dl.ListInventory()

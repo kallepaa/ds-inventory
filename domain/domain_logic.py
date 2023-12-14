@@ -33,10 +33,10 @@ def OrderCanceled(order : OrderCancel):
     return
 
 def __message_publish(topic: str, payload: str):
-
-    print("Out going message")
-    print(F"Topic: {topic}")
-    print(F"Payload: {payload}")
+    print("")
+    print("\033[93mInventory - Outgoing message\033[00m")
+    print(F"\033[93mTopic: {topic}\033[00m")
+    print(F"\033[93mPayload: {payload}\033[00m")
 
     publish.single(
         topic, 
